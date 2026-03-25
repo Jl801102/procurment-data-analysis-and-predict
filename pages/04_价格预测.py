@@ -51,7 +51,7 @@ group_filter = df[group_col] == selected_group
 group_df = df[group_filter].copy()
 
 # 准备时间序列（按月平均）
-monthly = group_df.set_index(date_col).resample('M')[price_col].mean().dropna()
+monthly = group_df.set_index(date_col).resample('ME')[price_col].mean().dropna()
 if len(monthly) < 12:
     st.warning(f"{selected_group} 的历史数据不足12个月（仅有{len(monthly)}个月），无法进行可靠预测。")
     st.stop()
